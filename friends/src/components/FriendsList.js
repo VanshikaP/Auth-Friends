@@ -20,6 +20,16 @@ const FriendsList = () => {
         getData()
     }, [])
 
+    const handleDelete = f => {
+        axiosWithAuth()
+        .delete(`/api/friends/${f.id}`)
+        .then(res =>{
+            console.log(f.name, 'Deleted', res);
+            setFriends(res.data)
+        })
+        .catch(err => console.log('Error in deleting', err))
+    }
+
     return (friends.length === 0)
         ? <h2 className='loading-text'>...Loading</h2>
         : (
@@ -32,10 +42,15 @@ const FriendsList = () => {
                                 <h3 className='friend-name'> {f.name} </h3>
                                 <p className='friend-info'>Age: {f.age} </p>
                                 <p className='friend-info'>Email: {f.email} </p>
+                                <button onClick={e => {
+                                    e.preventDefault();
+                                    handleDelete(f)
+                                }}>Delete</button>
                             </div>
                         )
                     })}
                 </div>
+                
             </div>
         )
 
