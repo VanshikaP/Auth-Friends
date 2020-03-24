@@ -5,6 +5,7 @@ import { PrivateRoute } from './components/PrivateRoute'
 
 import Login from './components/Login'
 import FriendsList from './components/FriendsList'
+import AddFriend from './components/AddFriend'
 
 import './App.css';
 
@@ -17,11 +18,13 @@ function App() {
         <nav>
           <Link to='/'>Log In</Link>
           <Link to='/friends'>Friends</Link>
+          <Link to='/addFriend'>Add a Friend</Link>
         </nav>
       </header>
       <Switch>
       <Route exact path='/' component={Login} />
       <PrivateRoute exact path='/friends' component={FriendsList} />
+      <PrivateRoute exact path='/addFriend' component={AddFriend} />
       </Switch>
     </div>
     </Router>
